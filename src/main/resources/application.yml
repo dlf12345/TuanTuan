@@ -18,12 +18,12 @@ spring:
       max-request-size: 100MB
 
 #mybatis配置信息
-#mybatis:
-#  configuration:
-#    #    mybatis日志信息输出在控制台
-#    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
-#    #    打开mybatis驼峰命名法
-#    map-underscore-to-camel-case: true
+mybatis:
+  configuration:
+    #    mybatis日志信息输出在控制台
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+    #    打开mybatis驼峰命名法
+    map-underscore-to-camel-case: true
 
 mybatis-plus:
   configuration:

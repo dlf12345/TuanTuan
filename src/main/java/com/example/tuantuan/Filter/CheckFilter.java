@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 //定义一个过滤器过滤前端请求,拦截所有请求
-//@WebFilter(urlPatterns = "/*")
+@WebFilter(urlPatterns = "/*")
 public class CheckFilter implements Filter {
     //定义一个url路径匹配器，支持通配符
     public static final AntPathMatcher PATH_MATCHER=new AntPathMatcher();
