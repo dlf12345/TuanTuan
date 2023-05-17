@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.util.DigestUtils;
 
 import javax.servlet.http.HttpServletRequest;
+import java.time.LocalDateTime;
 
 
 @Service
@@ -36,5 +37,18 @@ public class EmployImpl extends ServiceImpl<EmployMapper,Employee> implements Em
         employee.setUpdateUser(id);
         employMapper.save(employee);
     }
+
+    @Override
+    public int update(HttpServletRequest httpServletRequest, Employee employee) {
+        //获得当前操作用户id
+        Long id = (Long)httpServletRequest.getSession().getAttribute("employ");
+//        设置执行当前操作的用户id
+        employee.setUpdateUser(id);
+        //设置当前修改时间
+        employee.setUpdateTime(LocalDateTime.now());
+        int count = employMapper.updateById(employee);
+        return count;
+    }
+
 
 }
