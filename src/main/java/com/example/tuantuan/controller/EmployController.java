@@ -65,8 +65,9 @@ public class EmployController {
 
     //    添加用户功能接口
     @PostMapping
-    public R<String> save(@RequestBody Employee employee, HttpServletRequest httpServletRequest) {
-        employImpl.save(employee, httpServletRequest);
+    public R<String> save(@RequestBody Employee employee,HttpServletRequest httpServletRequest) {
+
+        employImpl.save(employee,httpServletRequest);
         return R.success("添加成功");
     }
 

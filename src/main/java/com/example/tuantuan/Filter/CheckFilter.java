@@ -2,6 +2,7 @@ package com.example.tuantuan.Filter;
 
 import com.alibaba.fastjson.JSONObject;
 import com.example.tuantuan.domain.R;
+import com.example.tuantuan.utils.BaseContext;
 import org.springframework.util.AntPathMatcher;
 
 import javax.servlet.*;
@@ -38,7 +39,11 @@ public class CheckFilter implements Filter {
 //        (3)判断请求是否需要拦截
         if(check(requestURI,urls)==false){//如果需要拦截，判断Session中是否有数据从而判断用户是否登录
             if(httpServletRequest.getSession().getAttribute("employ")!=null){
-                //如果用户已经登录，对请求放行
+                //如果用户已经登录
+//                获取session中的用户id保存到Threadlocal中
+                Long uid = (Long)httpServletRequest.getSession().getAttribute("employ");
+                BaseContext.setCurrentId(uid);
+//                对请求放行
                 filterChain.doFilter(servletRequest, servletResponse);
                 return;//结束方法
             }

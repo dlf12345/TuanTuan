@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import java.time.LocalDateTime;
 
 
+
 @Service
 public class EmployImpl extends ServiceImpl<EmployMapper,Employee> implements Employ {
     @Autowired
@@ -29,14 +30,20 @@ public class EmployImpl extends ServiceImpl<EmployMapper,Employee> implements Em
 
     @Override
     public void save(Employee employee, HttpServletRequest httpServletRequest) {
-//        给新添加用户设置默认密码
         employee.setPassword(encryption("123456"));
-//        给新用户添加create_user和update_user信息,获取保存在Session中的登录账号信息
-        Long id = (Long) httpServletRequest.getSession().getAttribute("employ");
-        employee.setCreateUser(id);
-        employee.setUpdateUser(id);
         employMapper.save(employee);
     }
+
+//    @Override
+//    public void save(Employee employee) {
+////        给新添加用户设置默认密码
+//        employee.setPassword(encryption("123456"));
+////        给新用户添加create_user和update_user信息,获取保存在Session中的登录账号信息
+////        Long id = (Long) httpServletRequest.getSession().getAttribute("employ");
+////        employee.setCreateUser(id);
+////        employee.setUpdateUser(id);
+//        employMapper.save(employee);
+//    }
 
     @Override
     public int update(HttpServletRequest httpServletRequest, Employee employee) {
@@ -49,6 +56,5 @@ public class EmployImpl extends ServiceImpl<EmployMapper,Employee> implements Em
         int count = employMapper.updateById(employee);
         return count;
     }
-
 
 }

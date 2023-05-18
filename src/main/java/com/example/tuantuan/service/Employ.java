@@ -11,6 +11,6 @@ public interface Employ  extends IService<Employee>{
     public String encryption(String password);
 //    //后台管理系统用户登录
     public Employee login(String username);
-    public void save(Employee employee, HttpServletRequest httpServletRequest);
+    public void save(Employee employee ,HttpServletRequest httpServletRequest);
     public int update(HttpServletRequest httpServletRequest,Employee employee);
 }
