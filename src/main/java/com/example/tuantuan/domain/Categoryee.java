@@ -1,23 +1,22 @@
 package com.example.tuantuan.domain;
 
-import com.baomidou.mybatisplus.annotation.FieldFill;
-import com.baomidou.mybatisplus.annotation.IdType;
-import com.baomidou.mybatisplus.annotation.TableField;
-import com.baomidou.mybatisplus.annotation.TableId;
+import com.baomidou.mybatisplus.annotation.*;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
-import lombok.Getter;
-import lombok.Setter;
 import java.io.Serializable;
 import java.time.LocalDateTime;
 
 /**
- * 分类
+ * 菜品分类
  */
 @Data
+//设置实体类对应的表名
+@TableName("category")
 public class Categoryee implements Serializable {
 
     private static final long serialVersionUID = 1L;
-
+    //添加注解解决雪花算法id回调前端时精度丢失的问题
+    @JsonFormat(shape = JsonFormat.Shape.STRING)
     private Long id;
 
 
