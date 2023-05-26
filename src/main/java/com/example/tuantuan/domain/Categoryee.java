@@ -14,7 +14,7 @@ import java.time.LocalDateTime;
  * 分类
  */
 @Data
-public class Category implements Serializable {
+public class Categoryee implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
