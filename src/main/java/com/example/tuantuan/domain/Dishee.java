@@ -1,9 +1,7 @@
 package com.example.tuantuan.domain;
 
-import com.baomidou.mybatisplus.annotation.FieldFill;
-import com.baomidou.mybatisplus.annotation.IdType;
-import com.baomidou.mybatisplus.annotation.TableField;
-import com.baomidou.mybatisplus.annotation.TableId;
+import com.baomidou.mybatisplus.annotation.*;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
 import java.io.Serializable;
 import java.math.BigDecimal;
@@ -13,10 +11,12 @@ import java.time.LocalDateTime;
  菜品
  */
 @Data
-public class Dish implements Serializable {
+@TableName("dish")
+public class Dishee implements Serializable {
 
     private static final long serialVersionUID = 1L;
-
+    //添加注解解决雪花算法id回调前端时精度丢失的问题
+    @JsonFormat(shape = JsonFormat.Shape.STRING)
     private Long id;
 
 

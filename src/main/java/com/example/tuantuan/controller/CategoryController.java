@@ -47,13 +47,8 @@ public class CategoryController {
     //根据id删除
     @DeleteMapping
     public R<String> deleteById(Long ids){
-        System.out.println(ids);
-//        int i = categoryImpl.deleteById(ids);
-//        if(i!=0){
-//            return R.success("删除成功");
-//        }
-//        return R.error("删除失败");
-        return R.success("123");
+        categoryImpl.deleteById(ids);
+        return R.success("删除成功");
     }
 
     //修改

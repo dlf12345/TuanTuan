@@ -17,4 +17,9 @@ public class GlobalExceptionHandler {
         }
         return R.error("未知错误，请联系管理员");
     }
+    //捕获自定义逻辑异常并处理
+    @ExceptionHandler(CustomException.class)
+    public R<String> exceptionHandler(CustomException ex){
+        return R.error(ex.getMessage());
+    }
 }
