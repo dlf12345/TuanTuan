@@ -54,10 +54,14 @@
           prop="name"
           label="菜品名称"
         ></el-table-column>
+
+
+
+
         <el-table-column prop="image" label="图片" align="center">
           <template slot-scope="{ row }">
             <el-image style="width: auto; height: 40px; border:none;cursor: pointer;" 
-            :src="getImage(row.image)" 
+            :src="getImage(row.image)"
             :preview-src-list="[ `/common/download?name=${row.image}` ]" >
             <div slot="error" class="image-slot">
               <img src="./../../images/noImg.png"  style="width: auto; height: 40px; border:none;" >
@@ -65,6 +69,9 @@
           </el-image>
           </template>
         </el-table-column>
+
+
+
         <el-table-column
           prop="categoryName"
           label="菜品分类"

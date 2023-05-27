@@ -33,3 +33,16 @@ mybatis-plus:
   global-config:
     db-config:
       id-type: ASSIGN_ID
+
+
+#阿里云OSS配置
+aliyun:
+  oss:
+    endpoint: https://oss-cn-beijing.aliyuncs.com
+    accessKeyId: LTAI5tFy7Upd1nTh8x2GPq9Z
+    accessKeySecret: v2AfUq1ToE9C9YCMegnm0s9G5wZaQZ
+    bucketName: webtest-tlias
+
+#配置图片上传时保存的默认位置
+tuantuan:
+  path: E:\Document\项目开发\团团外卖订餐系统\imagesave\
