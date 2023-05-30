@@ -1,6 +1,7 @@
 package com.example.tuantuan.controller;
 
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.example.tuantuan.domain.Categoryee;
 import com.example.tuantuan.domain.Employee;
@@ -10,6 +11,8 @@ import com.example.tuantuan.service.Impl.CategoryImpl;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/category")
@@ -56,5 +59,16 @@ public class CategoryController {
        categoryImpl.updateById(categoryee);
        return R.success("修改分类信息成功");
     }
+
+    @GetMapping("list")
+    public R<List<Categoryee>> list(int type){
+        QueryWrapper<Categoryee> queryWrapper = new QueryWrapper<>();
+        //添加动态条件
+        queryWrapper.eq(type!=0,"type",1);
+        //查询
+        List<Categoryee> list = categoryImpl.list(queryWrapper);
+        return R.success(list);
+    }
+
 }
 

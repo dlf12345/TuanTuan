@@ -1,6 +1,7 @@
 package com.example.tuantuan.domain;
 
-import com.baomidou.mybatisplus.annotation.*;
+import com.baomidou.mybatisplus.annotation.FieldFill;
+import com.baomidou.mybatisplus.annotation.TableField;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
 import java.io.Serializable;
@@ -8,48 +9,38 @@ import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
 /**
- 菜品
+ * 套餐菜品关系
  */
 @Data
-@TableName("dish")
-public class Dishee implements Serializable {
+public class SetmealDish implements Serializable {
 
     private static final long serialVersionUID = 1L;
-    //添加注解解决雪花算法id回调前端时精度丢失的问题
+
     @JsonFormat(shape = JsonFormat.Shape.STRING)
     private Long id;
 
 
-    //菜品名称
+    //套餐id
+    @JsonFormat(shape = JsonFormat.Shape.STRING)
+    private Long setmealId;
+
+
+    //菜品id
+    @JsonFormat(shape = JsonFormat.Shape.STRING)
+    private Long dishId;
+
+
+    //菜品名称 （冗余字段）
     private String name;
 
-
-    //菜品分类id
-    @JsonFormat(shape = JsonFormat.Shape.STRING)
-    private Long categoryId;
-
-
-    //菜品价格
+    //菜品原价
     private BigDecimal price;
 
-
-    //商品码
-    private String code;
-
-
-    //图片
-    private String image;
+    //份数
+    private Integer copies;
 
 
-    //描述信息
-    private String description;
-
-
-    //0 停售 1 起售
-    private Integer status;
-
-
-    //顺序
+    //排序
     private Integer sort;
 
 
@@ -68,4 +59,7 @@ public class Dishee implements Serializable {
     @TableField(fill = FieldFill.INSERT_UPDATE)
     private Long updateUser;
 
+
+    //是否删除
+    private Integer isDeleted;
 }
