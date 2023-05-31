@@ -3,6 +3,7 @@ package com.example.tuantuan.controller;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.example.tuantuan.domain.DishFlavor;
+import com.example.tuantuan.domain.Dishee;
 import com.example.tuantuan.domain.R;
 import com.example.tuantuan.dto.DishDto;
 import com.example.tuantuan.service.Dish;
@@ -76,5 +77,14 @@ public class DishController {
             dish.startSales(id);
         }
         return R.success("操作成功");
+    }
+    //按照分类id查询菜品
+    @GetMapping("/list")
+    public R<List<Dishee>> list(Long categoryId){
+        System.out.println(categoryId);
+        LambdaQueryWrapper<Dishee> queryWrapper = new LambdaQueryWrapper<>();
+        queryWrapper.eq(Dishee::getCategoryId,categoryId);
+        List<Dishee> list = dish.list(queryWrapper);
+        return R.success(list);
     }
 }

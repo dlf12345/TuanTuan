@@ -10,6 +10,7 @@ import com.example.tuantuan.service.Category;
 import com.example.tuantuan.service.Dish;
 import com.example.tuantuan.service.Setmeal;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -19,6 +20,7 @@ public class CategoryImpl extends ServiceImpl<CategoryMapper, Categoryee> implem
     @Autowired
     private Dish dish;
     @Autowired
+    @Lazy
     private Setmeal setmeal;
 
 

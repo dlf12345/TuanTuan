@@ -64,7 +64,7 @@ public class CategoryController {
     public R<List<Categoryee>> list(int type){
         QueryWrapper<Categoryee> queryWrapper = new QueryWrapper<>();
         //添加动态条件
-        queryWrapper.eq(type!=0,"type",1);
+        queryWrapper.eq(type!=0,"type",type);
         //查询
         List<Categoryee> list = categoryImpl.list(queryWrapper);
         return R.success(list);
