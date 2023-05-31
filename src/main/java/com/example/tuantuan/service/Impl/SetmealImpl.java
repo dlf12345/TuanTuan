@@ -119,4 +119,14 @@ public class SetmealImpl extends ServiceImpl<SetmealMapper, Setmealee> implement
     public void startSales(Long id) {
         setmealMapper.startSales(id);
     }
+
+    @Override
+    public void deleteById(Long id) {
+        //删除套餐表中的数据
+        this.removeById(id);
+        //删除套餐菜品表中的数据
+        LambdaQueryWrapper<SetmealDish> queryWrapper = new LambdaQueryWrapper<>();
+        queryWrapper.eq(SetmealDish::getSetmealId,id);
+        setmealDishService.remove(queryWrapper);
+    }
 }

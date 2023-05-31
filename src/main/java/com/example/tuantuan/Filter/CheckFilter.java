@@ -34,15 +34,29 @@ public class CheckFilter implements Filter {
                 "/employee/logout",
 //                前端页面静态资源请求不拦截
                 "/backend/**",
-                "/front/**"
+                "/front/**",
+//                手机用户登录，发送验证码不进行拦截
+                "/user/sendMsg",
+                "/user/login"
         };
 //        (3)判断请求是否需要拦截
-        if(check(requestURI,urls)==false){//如果需要拦截，判断Session中是否有数据从而判断用户是否登录
+        if(check(requestURI,urls)==false){
+            //（3-1）如果需要拦截，判断Session中是否有数据从而判断后台用户是否登录
             if(httpServletRequest.getSession().getAttribute("employ")!=null){
                 //如果用户已经登录
 //                获取session中的用户id保存到Threadlocal中
                 Long uid = (Long)httpServletRequest.getSession().getAttribute("employ");
                 BaseContext.setCurrentId(uid);
+//                对请求放行
+                filterChain.doFilter(servletRequest, servletResponse);
+                return;//结束方法
+            }
+            //（3-2）如果需要拦截，判断Session中是否有数据从而判断手机用户是否登录
+            if(httpServletRequest.getSession().getAttribute("user")!=null){
+                //如果用户已经登录
+//                获取session中的用户id保存到Threadlocal中
+//                Long uid = (Long)httpServletRequest.getSession().getAttribute("user");
+//                BaseContext.setCurrentId(uid);
 //                对请求放行
                 filterChain.doFilter(servletRequest, servletResponse);
                 return;//结束方法
@@ -54,6 +68,17 @@ public class CheckFilter implements Filter {
             httpServletResponse.getWriter().write(s);
             return;
         }
+
+
+
+
+
+
+
+
+
+
+
 //        （4）如果不需要拦截，直接放行
         filterChain.doFilter(servletRequest, servletResponse);
         return;//结束方法

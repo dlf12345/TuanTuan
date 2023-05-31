@@ -54,5 +54,13 @@ public class SetmealController {
         }
         return R.success("操作成功");
     }
+    //删除
+    @DeleteMapping
+    public R<String> deleteById(Long []ids){
+        for (Long id : ids) {
+            setmeal.deleteById(id);
+        }
+        return R.success("删除成功");
+    }
 
 }

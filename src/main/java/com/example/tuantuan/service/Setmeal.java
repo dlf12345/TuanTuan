@@ -21,4 +21,6 @@ public interface  Setmeal extends IService<Setmealee> {
     void stopSales(Long id);
     //起售
     void startSales(Long id);
+    //删除
+    void deleteById(Long id);
 }
