@@ -55,8 +55,8 @@ public class CheckFilter implements Filter {
             if(httpServletRequest.getSession().getAttribute("user")!=null){
                 //如果用户已经登录
 //                获取session中的用户id保存到Threadlocal中
-//                Long uid = (Long)httpServletRequest.getSession().getAttribute("user");
-//                BaseContext.setCurrentId(uid);
+                Long id = (Long)httpServletRequest.getSession().getAttribute("user");
+                BaseContext.setCurrentId(id);
 //                对请求放行
                 filterChain.doFilter(servletRequest, servletResponse);
                 return;//结束方法

@@ -3,7 +3,6 @@ import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.example.tuantuan.domain.R;
 import com.example.tuantuan.domain.User;
 import com.example.tuantuan.service.UserService;
-import com.example.tuantuan.utils.SMSUtils;
 import com.example.tuantuan.utils.ValidateCodeUtils;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang.StringUtils;
@@ -37,8 +36,8 @@ public class UserController {
         if(StringUtils.isNotEmpty(phone)){
             String s = ValidateCodeUtils.generateValidateCode(6).toString();
             System.out.println(s);
-//            使用阿里云SMS服务发送验证码短信
-            SMSUtils.sendMessage("TuanTuan","SMS_461075379",phone,s);
+//            使用阿里云SMS服务发送验证码短信,需要付费使用，尽量少使用
+//            SMSUtils.sendMessage("TuanTuan","SMS_461075379",phone,s);
 //            将生成的验证码保存在session中，用于登录的时候进行比对
             session.setAttribute(phone,s);
             return R.success("短信发送成功");
