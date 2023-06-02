@@ -60,15 +60,20 @@ public class CategoryController {
        return R.success("修改分类信息成功");
     }
 
+    //根据条件查询分类信息，使用实体类封装前端传过来的数据
     @GetMapping("list")
-    public R<List<Categoryee>> list(int type){
-        QueryWrapper<Categoryee> queryWrapper = new QueryWrapper<>();
-        //添加动态条件
-        queryWrapper.eq(type!=0,"type",type);
-        //查询
+    public R<List<Categoryee>> list(Categoryee categoryee){
+        //条件构造器
+        LambdaQueryWrapper<Categoryee> queryWrapper = new LambdaQueryWrapper<>();
+        //添加查询条件
+        queryWrapper.eq(categoryee.getType()!=null,Categoryee::getType,categoryee.getType());
+        //添加排序条件
+        queryWrapper.orderByAsc(Categoryee::getSort).orderByDesc(Categoryee::getUpdateTime);
         List<Categoryee> list = categoryImpl.list(queryWrapper);
         return R.success(list);
     }
+
+
 
 }
 

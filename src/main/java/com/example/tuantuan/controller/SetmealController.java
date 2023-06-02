@@ -1,11 +1,16 @@
 package com.example.tuantuan.controller;
 
+import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.example.tuantuan.domain.R;
+import com.example.tuantuan.domain.Setmealee;
 import com.example.tuantuan.dto.SetmealDto;
 import com.example.tuantuan.service.Setmeal;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
+import java.util.Set;
 
 //套餐管理
 @RestController
@@ -62,5 +67,14 @@ public class SetmealController {
         }
         return R.success("删除成功");
     }
-
+    //根据条件查询套餐信息
+    @GetMapping("/list")
+    public R<List<Setmealee>> list(Setmealee setmealee){
+        Long categoryId = setmealee.getCategoryId();
+//        Integer status = setmealee.getStatus();
+        LambdaQueryWrapper<Setmealee> queryWrapper = new LambdaQueryWrapper<>();
+        queryWrapper.eq(Setmealee::getCategoryId,categoryId).eq(Setmealee::getStatus,1);
+        List<Setmealee> list = setmeal.list(queryWrapper);
+        return R.success(list);
+    }
 }
